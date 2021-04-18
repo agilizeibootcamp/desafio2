@@ -12,3 +12,22 @@
 // You can read more here:
 // https://on.cypress.io/configuration
 // ***********************************************************
+Cypress.Commands.add('backgroundLogin', () => {
+    cy.request({
+        method: 'POST',
+        url: `${Cypress.config().apiUrl}users/login`,
+        body: {
+            user: {
+                email: 'tai@mail.com',
+                password: 'agilizei'
+            }
+        }
+    }).then((loginResponse) => {
+        cy.log(loginResponse.body.user.token)
+        cy.visit('', {
+            onBeforeLoad: (win) => {
+                win.localStorage.setItem('jwtToken', loginResponse.body.user.token)
+            }
+        });
+    });
+})
