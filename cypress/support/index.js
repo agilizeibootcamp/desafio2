@@ -11,6 +11,8 @@
 //
 // You can read more here:
 // https://on.cypress.io/configuration
+import Routes from './routes';
+
 // ***********************************************************
 Cypress.Commands.add('backgroundLogin', () => {
     cy.request({
@@ -31,3 +33,7 @@ Cypress.Commands.add('backgroundLogin', () => {
         });
     });
 })
+
+before (() => {
+    Routes.init();
+});

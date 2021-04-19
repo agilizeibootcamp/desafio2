@@ -1,8 +1,6 @@
 /// <reference types="cypress" />
 import articles from '../support/pages/articles'
 
-const faker = require('faker')
-
 describe('Articles', () => {
     
     beforeEach(() => {

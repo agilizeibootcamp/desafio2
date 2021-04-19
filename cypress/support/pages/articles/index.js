@@ -1,4 +1,5 @@
 const faker = require('faker')
+import Routes from '../../routes'
 
 class Articles {
 
@@ -14,11 +15,17 @@ class Articles {
     }
     
     submitForm() {
-        cy.get('button.btn-primary').click()
+        cy.get('button.btn-primary').click();
     }
        
     assertNewArticleCreation () {
         cy.url().should('contain','the-best-tool-for-e2e-tests');
+        
+        cy.wait(`@${Routes.as.postArticle}`).its('response.statusCode').should('eq', 200);
+
+        cy.wait(`@${Routes.as.getArticleTitle}`).its('response.statusCode').should('eq', 200);
+
+        cy.wait(`@${Routes.as.getArticleComments}`).its('response.statusCode').should('eq', 200);
     }
 
 }
