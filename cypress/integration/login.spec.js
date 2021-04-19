@@ -1,14 +1,11 @@
-// enables intelligent code completion for Cypress commands
-// https://on.cypress.io/intelligent-code-completion
 /// <reference types="cypress" />
+import login from '../support/pages/login'
 
-const faker = require('faker')
-
-describe('Register', () => {
-  it('Register new user', function () {
-    cy.visit('login');
-    cy.get('input[ng-model*=email]').type(Cypress.config().user.email);
-    cy.get('input[ng-model*=password]').type(Cypress.config().user.password);
-    cy.get('.btn').click();
+describe('Login', () => {
+  it('Login with success', function () {
+    login.visitLoginPage();
+    login.fillForm();
+    login.submitForm();
+    login.assertLoginWithSuccess();
   })
 })
